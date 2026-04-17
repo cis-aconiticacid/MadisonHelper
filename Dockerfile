@@ -1,4 +1,4 @@
-FROM base-research:latest
+FROM base:latest
 USER root
 WORKDIR /workspace
 
@@ -14,8 +14,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g @anthropic-ai/claude-code
 
-
-
 ENV IS_SANDBOX=1
 RUN mkdir -p /root/.claude && \
-    echo '{"permissions":{"defaultMode":"bypassPermissions"}}' > /root/.claude/settings.json
+    echo '{"permissions":{"defaultMode":"bypassPermissions","allowedTools":["*"]}}' > /root/.claude/settings.json
